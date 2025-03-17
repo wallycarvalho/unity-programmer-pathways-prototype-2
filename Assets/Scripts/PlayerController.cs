@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        // set the a Z stopper value so the player does not go beyond the set value
         if (transform.position.z < -zRange)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
@@ -51,6 +52,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // LoseLife address two main things:
+    // first it checks if the player has no more lives
+    // if the player has no more lives, we destroy the player object
+    // and notify the player that they have no more lives but only once
     public void LoseLife()
     {
         if (playerLives.Lives <= 0 && hasNotifiedPlayer == false)
@@ -65,11 +70,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // GetLives returns the number of lives the player has
     public int GetLives()
     {
         return playerLives.Lives;
     }
 
+    // GainLife adds a life to the player and logs the result so the player can see in Unity's console
     public void GainLife()
     {
         playerLives.GainLife();
